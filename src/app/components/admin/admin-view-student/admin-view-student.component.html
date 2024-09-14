@@ -22,8 +22,10 @@
       </div>
   
       <!-- Loading Spinner -->
-      <div *ngIf="loading" class="loading-spinner">
-        <i class="bi bi-spinner"></i> Loading...
+      <div *ngIf="loading" class="loading-container d-flex flex-column align-items-center justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
       </div>
   
       <!-- Table for Students -->

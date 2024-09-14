@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
           const token = responseData.data?.token;
           const roles = responseData.data?.roles;
 
-          // Display success message from backend
           this.toastr.success(responseData.message, 'Success');
 
           this.loginForm.reset();
@@ -60,14 +59,13 @@ export class LoginComponent implements OnInit {
 
             // Route based on role
             if (roles.includes('Admin')) {
-              this.route.navigate(['/admin-dashboard/dashboard']);
+              this.route.navigate(['/admin']);
             } else if (roles.includes('Student')) {
-              this.route.navigate(['/student-dashboard']);
+              this.route.navigate(['/student']);
             }
           }
         },
         error: (errorResponse: any) => {
-          // Display error message from backend
           this.toastr.error(errorResponse.error?.message || 'Login failed. Please try again.', 'Error');
         },
       });

@@ -1,1 +1,144 @@
-<p>admin-add-admin works!</p>
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Admin</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Add Admin</li>
+        </ol>
+      </nav>
+    </div>
+  
+    <div class="bg-light py-1 py-md-2">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <h2 class="h3">Add Admin Form</h2>
+                  </div>
+                </div>
+              </div>
+              <form [formGroup]="adminRegistrationForm" (ngSubmit)="onSubmit()">
+                <div class="row gy-3 gy-md-4 overflow-hidden">
+                  <div class="col-12">
+                    <label for="name" class="form-label"
+                      >Name <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      formControlName="name"
+                      [class.is-invalid]="validateForm('name')"
+                      placeholder="Name"
+                    />
+                    <span class="invalid-feedback"
+                          >Name is required</span
+                        >
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label for="email" class="form-label"
+                      >Email <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                      [class.is-invalid]="validateForm('email')"
+                      placeholder="name@example.com"
+                    />
+                    <span class="invalid-feedback"
+                          >Email is required</span
+                        >
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label for="phone" class="form-label"
+                      >Phone <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phone"
+                      formControlName="phone"
+                      [class.is-invalid]="validateForm('phone')"
+                      placeholder="Phone"
+                    />
+                    <span class="invalid-feedback"
+                          >Phone is required</span
+                        >
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label for="gender" class="form-label"
+                      >Gender <span class="text-danger">*</span></label
+                    >
+                    <select
+                      class="form-select"
+                      id="gender"
+                      formControlName="gender"
+                      [class.is-invalid]="validateForm('gender')"
+                    >
+                      <option value="" disabled selected>Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <span class="invalid-feedback"
+                          >Gender is required</span
+                        >
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label for="password" class="form-label"
+                      >Password <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      formControlName="password"
+                      [class.is-invalid]="validateForm('password')"
+                      placeholder="Password"
+                    />
+                    <span class="invalid-feedback"
+                          >Password is required</span
+                        >
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label for="repeatPassword" class="form-label"
+                      >Repeat Password <span class="text-danger">*</span></label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="repeatPassword"
+                      formControlName="repeatPassword"
+                      [class.is-invalid]="validateForm('repeatPassword')"
+                      placeholder="Repeat Password"
+                    />
+                    <span class="invalid-feedback"
+                          >Password not matched</span
+                        >
+                  </div>
+                  <div class="col-12">
+                    <div class="d-grid">
+                      <button
+                        class="btn btn-lg btn-primary"
+                        type="submit"
+                        *ngIf="isFormValid()"
+                      >
+                        Register
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

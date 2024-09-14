@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
 import { studentModel } from '../../../models/studentModel';
 import { StudentService } from '../../../services/student/student.service';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-view-student',
@@ -10,14 +13,15 @@ import { StudentService } from '../../../services/student/student.service';
 })
 export class AdminViewStudentComponent implements OnInit {
   allStudent: studentModel[] = [];
-  selectedStudent: studentModel | null = null; 
+  selectedStudent: studentModel | null = null;
   updateData: studentModel = {} as studentModel;
-  loading: boolean = false; // Add a loading indicator
-  loadingTemporary: boolean = false; // For minimum 1 second loading
+  loading: boolean = false;
+  loadingTemporary: boolean = false;
 
   constructor(
     private viewStudentService: StudentService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -25,15 +29,15 @@ export class AdminViewStudentComponent implements OnInit {
   }
 
   loadStudents(): void {
-    this.startLoading(); // Start loading indicator
+    this.startLoading();
     this.viewStudentService.getAllStudent().subscribe({
       next: (students) => {
         this.allStudent = students;
-        this.stopLoading(); // Stop loading indicator
+        this.stopLoading();
         console.log(this.allStudent);
       },
       error: (error) => {
-        this.stopLoading(); // Stop loading indicator
+        this.stopLoading();
         console.error('Error fetching students:', error);
         this.toastr.error('Failed to fetch students', 'Error');
       }
@@ -44,12 +48,11 @@ export class AdminViewStudentComponent implements OnInit {
     this.loading = true;
     this.loadingTemporary = true;
     setTimeout(() => {
-      this.loadingTemporary = false; // Ensure loading indicator is visible for at least 1 second
+      this.loadingTemporary = false;
     }, 1000);
   }
 
   stopLoading(): void {
-    // Ensure we stop loading only after the 1 second has passed
     setTimeout(() => {
       this.loading = false;
     }, this.loadingTemporary ? 1000 : 0);
@@ -62,17 +65,17 @@ export class AdminViewStudentComponent implements OnInit {
 
   updateStudent(): void {
     if (this.selectedStudent && this.updateData) {
-      this.startLoading(); // Start loading indicator
+      this.startLoading();
       this.viewStudentService.updateStudent(this.selectedStudent.email, this.updateData).subscribe({
         next: (response) => {
-          this.stopLoading(); // Stop loading indicator
+          this.stopLoading();
           console.log('Student updated successfully', response);
           this.toastr.success('Updated successfully', 'Success');
           this.loadStudents();
           this.selectedStudent = null;
         },
         error: (error) => {
-          this.stopLoading(); // Stop loading indicator
+          this.stopLoading();
           console.error('Error updating student:', error);
           this.toastr.error('Failed to update student', 'Error');
         }
@@ -81,21 +84,26 @@ export class AdminViewStudentComponent implements OnInit {
   }
 
   deleteStudent(email: string): void {
-    if (window.confirm('Are you sure you want to delete this student?')) {
-      this.startLoading(); // Start loading indicator
-      this.viewStudentService.deleteStudent(email).subscribe({
-        next: (response) => {
-          this.stopLoading(); // Stop loading indicator
-          console.log('Student deleted successfully', response);
-          this.allStudent = this.allStudent.filter(s => s.email !== email);
-          this.toastr.success('Deleted successfully', 'Success');
-        },
-        error: (error) => {
-          this.stopLoading(); // Stop loading indicator
-          console.error('Error deleting student:', error);
-          this.toastr.error('Failed to delete student', 'Error');
-        }
-      });
-    }
+    const initialState = {
+      onConfirm: () => {
+        this.startLoading();
+        this.viewStudentService.deleteStudent(email).subscribe({
+          next: (response) => {
+            this.stopLoading();
+            console.log('Student deleted successfully', response);
+            this.allStudent = this.allStudent.filter(s => s.email !== email);
+            this.toastr.success('Deleted successfully', 'Success');
+          },
+          error: (error) => {
+            this.stopLoading();
+            console.error('Error deleting student:', error);
+            this.toastr.error('Failed to delete student', 'Error');
+          }
+        });
+      },
+      onDecline: () => {}
+    };
+
+    this.modalService.show(ConfirmDialogComponent, { initialState });
   }
 }

@@ -23,6 +23,8 @@ import { AdminAddAdminComponent } from './components/admin/admin-add-admin/admin
 import { AdminViewAdminComponent } from './components/admin/admin-view-admin/admin-view-admin.component';
 import { AdminRequestedMeetingComponent } from './components/admin/admin-requested-meeting/admin-requested-meeting.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     AdminAddAdminComponent,
     AdminViewAdminComponent,
     AdminRequestedMeetingComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import { ProfileComponent } from './components/profile/profile.component';
       preventDuplicates: true, 
       closeButton: true, 
     }),
-    
+    ModalModule.forRoot()
   ],
   providers: [
     provideClientHydration(),

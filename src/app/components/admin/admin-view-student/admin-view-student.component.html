@@ -20,7 +20,14 @@
           </div>
         </div>
       </div>
-      <table class="table table-striped" *ngIf="!selectedStudent">
+  
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="loading-spinner">
+        <i class="bi bi-spinner"></i> Loading...
+      </div>
+  
+      <!-- Table for Students -->
+      <table class="table table-striped" *ngIf="!loading && !selectedStudent">
         <thead class="text-center">
           <tr>
             <th scope="col">#</th>

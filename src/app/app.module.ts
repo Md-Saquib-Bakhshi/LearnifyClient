@@ -56,6 +56,7 @@ import { ProfileComponent } from './components/profile/profile.component';
       preventDuplicates: true, 
       closeButton: true, 
     }),
+    
   ],
   providers: [
     provideClientHydration(),

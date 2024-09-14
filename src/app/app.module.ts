@@ -27,6 +27,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { StudentSidebarComponent } from './components/student/student-sidebar/student-sidebar.component';
+import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AdminRequestedMeetingComponent,
     ProfileComponent,
     ConfirmDialogComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    StudentSidebarComponent,
+    StudentDashboardComponent
   ],
   imports: [
     BrowserModule,

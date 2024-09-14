@@ -17,6 +17,7 @@ import { AdminViewAdminComponent } from './components/admin/admin-view-admin/adm
 import { AdminRequestedMeetingComponent } from './components/admin/admin-requested-meeting/admin-requested-meeting.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -37,7 +38,14 @@ const routes: Routes = [
       {path:"leaderboard", component:LeaderboardComponent}
     ]
   },
-  {path:"student", component:StudentComponent, canActivate: [StudentGuard]},
+  {path:"student", component:StudentComponent, canActivate: [StudentGuard],
+    children: [
+      {path:"", redirectTo:"/student/dashboard", pathMatch:"full"},
+      {path:"dashboard", component:StudentDashboardComponent},
+      {path:"profile", component:ProfileComponent},
+      {path:"leaderboard", component:LeaderboardComponent}
+    ]
+  },
   {path:"**", component:ForbiddenComponent}
 ];
 

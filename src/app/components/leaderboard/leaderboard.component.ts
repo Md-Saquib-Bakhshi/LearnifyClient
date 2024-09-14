@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { leaderboardModel } from '../../models/leaderboardModel';
+import { LeaderboardModel } from '../../models/leaderboardModel';
 import { LeaderboardService } from '../../services/leaderboard/leaderboard.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { LeaderboardService } from '../../services/leaderboard/leaderboard.servi
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-  leaderboard: leaderboardModel[] = [];
+  leaderboard: LeaderboardModel[] = [];
   loading: boolean = false;
 
   constructor(private leaderboardService: LeaderboardService) { }
@@ -20,7 +20,7 @@ export class LeaderboardComponent implements OnInit {
   loadLeaderboard(): void {
     this.startLoading();
     this.leaderboardService.getLeaderboard().subscribe({
-      next: (data: leaderboardModel[]) => {
+      next: (data: LeaderboardModel[]) => {
         this.leaderboard = data;
         this.stopLoading();
       },

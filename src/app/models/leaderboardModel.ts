@@ -1,6 +1,9 @@
-export type leaderboardModel = {
-    studentId: string;
-    exam: number;
-    score: number;
-  };
+export type LeaderboardModel = {
+    id: number;
+    name: string;
+    email: string;
+    country: string;
+    gender: string;
+    gpa: number;
+  }
   

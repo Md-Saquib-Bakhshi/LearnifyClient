@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,14 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot({
+      timeOut: 3000, 
+      positionClass: 'toast-top-right', 
+      preventDuplicates: true, 
+      closeButton: true, 
+    }),
   ],
   providers: [
     provideClientHydration(),

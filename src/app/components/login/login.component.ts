@@ -3,19 +3,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { loginModel } from '../../models/loginModel';
 import { LoginService } from '../../services/login/login.service';
+import { ToastrService } from 'ngx-toastr'; // Add ToastrService for notifications
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'] // Fixed styleUrls property
 })
 export class LoginComponent implements OnInit {
-  loginForm !: FormGroup;
+  loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private route: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private toastr: ToastrService // Inject ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -48,8 +50,8 @@ export class LoginComponent implements OnInit {
           const token = responseData.data?.token;
           const roles = responseData.data?.roles;
 
-          // Success message
-          alert(responseData.message);
+          // Display success message from backend
+          this.toastr.success(responseData.message, 'Success');
 
           this.loginForm.reset();
           if (token) {
@@ -65,8 +67,8 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (errorResponse: any) => {
-          // Error message
-          alert(errorResponse.error?.message || 'Login failed. Please try again.');
+          // Display error message from backend
+          this.toastr.error(errorResponse.error?.message || 'Login failed. Please try again.', 'Error');
         },
       });
     }

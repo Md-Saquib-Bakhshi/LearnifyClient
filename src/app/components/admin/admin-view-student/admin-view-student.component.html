@@ -1,1 +1,80 @@
-<p>admin-view-student works!</p>
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Student</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">View Student</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="container-fluid">
+      <div class="row mb-3">
+        <!-- Add Student Button -->
+        <div class="col-md-12">
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-success btn rounded shadow">
+              <i class="bi bi-plus-circle-fill me-1"></i>
+              <a routerLink="/admin/add-student" class="text-white text-decoration-none">Add Student</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped" *ngIf="!selectedStudent">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Domain</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let student of allStudent; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{student.name}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.phone}}</td>
+            <td>{{student.gender}}</td>
+            <td>{{student.domain}}</td>
+            <td>
+              <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-warning me-2" (click)="selectStudentForUpdate(student)">Update</button>
+                <button type="button" class="btn btn-danger" (click)="deleteStudent(student.email)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Update Student Form -->
+      <div *ngIf="selectedStudent" class="update-form mt-3">
+        <h4 class="text-center text-black">Update Student: {{selectedStudent.name}}</h4>
+        <form (ngSubmit)="updateStudent()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="updateData.name" name="name" id="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" [(ngModel)]="updateData.phone" name="phone" id="phone" required>
+          </div>
+          <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <input type="text" class="form-control" [(ngModel)]="updateData.gender" name="gender" id="gender" required>
+          </div>
+          <div class="mb-3">
+            <label for="domain" class="form-label">Domain</label>
+            <input type="text" class="form-control" [(ngModel)]="updateData.domain" name="domain" id="domain" required>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-warning">Update Student</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  

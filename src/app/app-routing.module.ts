@@ -6,10 +6,11 @@ import { StudentComponent } from './components/student/student.component';
 import { AdminGuard } from './guards/admin.guard';
 import { StudentGuard } from './guards/student.guard';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
-  {path:"login", component:LoginComponent},
+  {path:"login", component:LoginComponent, canActivate: [AuthGuard]},
   {path:"forbidden", component:ForbiddenComponent},
   {path:"admin", component:AdminComponent, canActivate: [AdminGuard]},
   {path:"student", component:StudentComponent, canActivate: [StudentGuard]},

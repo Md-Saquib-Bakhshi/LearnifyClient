@@ -25,7 +25,7 @@ export class ForbiddenComponent implements OnInit, OnDestroy {
         } else {
           this.router.navigate(['/login']); 
         }
-      }, 3000);
+      }, 2500);
     }, 3000); 
   }
 

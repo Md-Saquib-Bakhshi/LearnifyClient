@@ -11,6 +11,18 @@ import { ToastrModule } from 'ngx-toastr';
 import { AdminComponent } from './components/admin/admin.component';
 import { StudentComponent } from './components/student/student.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AdminSidebarComponent } from './components/admin/admin-sidebar/admin-sidebar.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminAddCourseComponent } from './components/admin/admin-add-course/admin-add-course.component';
+import { AdminViewCourseComponent } from './components/admin/admin-view-course/admin-view-course.component';
+import { AdminViewStudentComponent } from './components/admin/admin-view-student/admin-view-student.component';
+import { AdminAddStudentComponent } from './components/admin/admin-add-student/admin-add-student.component';
+import { AdminAddAdminComponent } from './components/admin/admin-add-admin/admin-add-admin.component';
+import { AdminViewAdminComponent } from './components/admin/admin-view-admin/admin-view-admin.component';
+import { AdminRequestedMeetingComponent } from './components/admin/admin-requested-meeting/admin-requested-meeting.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +30,19 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
     LoginComponent,
     AdminComponent,
     StudentComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    HeaderComponent,
+    FooterComponent,
+    AdminSidebarComponent,
+    AdminDashboardComponent,
+    AdminAddCourseComponent,
+    AdminViewCourseComponent,
+    AdminViewStudentComponent,
+    AdminAddStudentComponent,
+    AdminAddAdminComponent,
+    AdminViewAdminComponent,
+    AdminRequestedMeetingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

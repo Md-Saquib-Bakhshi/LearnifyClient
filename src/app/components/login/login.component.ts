@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { loginModel } from '../../models/loginModel';
 import { LoginService } from '../../services/login/login.service';
-import { ToastrService } from 'ngx-toastr'; // Add ToastrService for notifications
+import { ToastrService } from 'ngx-toastr'; 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'] // Fixed styleUrls property
+  styleUrls: ['./login.component.css'] 
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private route: Router,
     private loginService: LoginService,
-    private toastr: ToastrService // Inject ToastrService
+    private toastr: ToastrService 
   ) {}
 
   ngOnInit(): void {

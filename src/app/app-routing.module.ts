@@ -16,6 +16,7 @@ import { AdminAddAdminComponent } from './components/admin/admin-add-admin/admin
 import { AdminViewAdminComponent } from './components/admin/admin-view-admin/admin-view-admin.component';
 import { AdminRequestedMeetingComponent } from './components/admin/admin-requested-meeting/admin-requested-meeting.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -32,7 +33,8 @@ const routes: Routes = [
       {path:"add-admin", component:AdminAddAdminComponent},
       {path:"view-admin", component:AdminViewAdminComponent},
       {path:"requested-meeting", component:AdminRequestedMeetingComponent},
-      {path:"profile", component:ProfileComponent}
+      {path:"profile", component:ProfileComponent},
+      {path:"leaderboard", component:LeaderboardComponent}
     ]
   },
   {path:"student", component:StudentComponent, canActivate: [StudentGuard]},

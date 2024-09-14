@@ -25,6 +25,7 @@ import { AdminRequestedMeetingComponent } from './components/admin/admin-request
 import { ProfileComponent } from './components/profile/profile.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     AdminViewAdminComponent,
     AdminRequestedMeetingComponent,
     ProfileComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,

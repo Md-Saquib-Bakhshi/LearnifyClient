@@ -1,0 +1,41 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Leaderboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active">View Leaderboard</li>
+        </ol>
+      </nav>
+    </div>
+  
+    <div class="container-fluid">
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="loading-container d-flex flex-column align-items-center justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+  
+      <!-- Leaderboard Table -->
+      <table class="table table-striped" *ngIf="!loading">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student ID</th>
+            <th scope="col">Exam</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let item of leaderboard; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{item.studentId}}</td>
+            <td>{{item.exam}}</td>
+            <td>{{item.score | number:'1.2-2'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  

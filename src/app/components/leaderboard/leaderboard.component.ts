@@ -10,6 +10,8 @@ import { LeaderboardService } from '../../services/leaderboard/leaderboard.servi
 export class LeaderboardComponent implements OnInit {
   leaderboard: LeaderboardModel[] = [];
   loading: boolean = false;
+  page: number = 1; 
+  itemsPerPage: number = 12; 
 
   constructor(private leaderboardService: LeaderboardService) { }
 
@@ -21,7 +23,7 @@ export class LeaderboardComponent implements OnInit {
     this.startLoading();
     this.leaderboardService.getLeaderboard().subscribe({
       next: (data: LeaderboardModel[]) => {
-        this.leaderboard = data;
+        this.leaderboard = this.sortByGPA(data);
         this.stopLoading();
       },
       error: (err) => {
@@ -37,5 +39,9 @@ export class LeaderboardComponent implements OnInit {
 
   stopLoading(): void {
     this.loading = false;
+  }
+
+  sortByGPA(data: LeaderboardModel[]): LeaderboardModel[] {
+    return data.sort((a, b) => b.gpa - a.gpa); 
   }
 }

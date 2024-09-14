@@ -26,6 +26,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
       preventDuplicates: true, 
       closeButton: true, 
     }),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [
     provideClientHydration(),

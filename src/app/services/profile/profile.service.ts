@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { profileModel } from '../../models/profileModel';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +30,20 @@ export class ProfileService {
     return null;
   }
 
-  
+  private handleError(error: HttpErrorResponse) {
+    console.error('Error:', error);
+    return throwError(() => new Error(error.error.message || 'Server error'));
+  }
 
   getProfile(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/role/${this.role}/email/${this.email}`);
+    return this.http.get<any>(`${this.baseUrl}/role/${this.role}/email/${this.email}`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   updateProfile(profile: profileModel): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/role/${this.role}/email/${this.email}`, profile);
+    return this.http.put<any>(`${this.baseUrl}/role/${this.role}/email/${this.email}`, profile).pipe(
+      catchError(this.handleError)
+    );
   }
 }

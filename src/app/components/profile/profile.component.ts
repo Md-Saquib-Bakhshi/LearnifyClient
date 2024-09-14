@@ -14,10 +14,10 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.loadProfile();
+    this.getProfile();
   }
 
-  loadProfile(): void {
+  getProfile(): void {
     this.profileService.getProfile().subscribe({
       next: (response) => {
         if (response.status === 'Success') {
@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching profile data:', error);
-        this.toastr.error('Error fetching profile data', 'Error');
+        this.toastr.error(error.message || 'Error fetching profile data', 'Error');
       }
     });
   }
@@ -41,14 +41,14 @@ export class ProfileComponent implements OnInit {
           if (response.status === 'Success') {
             console.log('Profile updated successfully:', response);
             this.toastr.success('Profile updated successfully', 'Success');
-            this.loadProfile();
+            this.getProfile();
           } else {
             this.toastr.error(response.message, 'Error');
           }
         },
         error: (error) => {
           console.error('Error updating profile:', error);
-          this.toastr.error('Error updating profile', 'Error');
+          this.toastr.error(error.message || 'Error updating profile', 'Error');
         }
       });
     }

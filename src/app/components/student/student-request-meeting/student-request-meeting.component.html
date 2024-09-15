@@ -11,7 +11,7 @@
   
     <div class="container-fluid">
       <!-- Toggle Button -->
-      <div class="mb-3">
+      <div class="mb-3 d-flex justify-content-end">
         <button 
           class="btn btn-primary" 
           (click)="showRequestForm = !showRequestForm">
@@ -23,7 +23,6 @@
       <div *ngIf="showRequestForm" class="bg-white p-4 p-md-5 rounded shadow-sm">
         <h4 class="text-center text-black">Request Meeting</h4>
         <form [formGroup]="meetingRequestForm" (ngSubmit)="onSubmit()">
-          <div class="mb-3">
             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
             <input
               type="email"
@@ -34,7 +33,7 @@
               placeholder="name@example.com"
             />
             <span class="invalid-feedback" *ngIf="validateForm('email')">Email is required</span>
-          </div>
+          </div> -->
           <div class="mb-3">
             <label for="requestMessage" class="form-label">Request Message <span class="text-danger">*</span></label>
             <textarea
@@ -82,7 +81,6 @@
             <th scope="col">Request Status</th>
             <th scope="col">Meeting Link</th>
             <th scope="col">Time</th>
-            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody class="text-center">
@@ -96,14 +94,7 @@
             </td>
             <td>{{ request.time }}</td>
             <td>
-              <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-warning me-2" (click)="selectRequestForUpdate(request)">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button type="button" class="btn btn-danger" >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </div>
+              
             </td>
           </tr>
         </tbody>

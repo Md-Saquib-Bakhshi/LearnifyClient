@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { meetingModel } from '../../../models/meetingModel';
 import { MeetingService } from '../../../services/meeting/meeting.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-student-request-meeting',
@@ -17,15 +18,29 @@ export class StudentRequestMeetingComponent implements OnInit {
   showRequestForm: boolean = false;
   loading: boolean = false;
 
+  email: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private meetingService: MeetingService,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.email = this.getEmailFromToken();
+  }
+
+  getEmailFromToken(): string | null {
+    const token = localStorage.getItem('authenticationToken');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      console.log('Decoded Token:', decodedToken);
+      return decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] || null;
+    }
+    return null;
+  }
 
   ngOnInit(): void {
     this.meetingRequestForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: this.email,
       requestMessage: ['', [Validators.required]]
     });
     this.loadMeetingRequests();
@@ -71,21 +86,6 @@ export class StudentRequestMeetingComponent implements OnInit {
     this.meetingRequest = request;
     this.showRequestForm = false;
   }
-
-  // deleteRequest(id: number): void {
-  //   if (confirm('Are you sure you want to delete this request?')) {
-  //     this.meetingService.deleteMeetingRequest(id).subscribe({
-  //       next: () => {
-  //         this.toastr.success('Request deleted successfully', 'Success');
-  //         this.loadMeetingRequests(); // Reload requests after deletion
-  //       },
-  //       error: (error) => {
-  //         const errorMessage = error?.error?.message || 'Failed to delete request';
-  //         this.toastr.error(errorMessage, 'Error');
-  //       }
-  //     });
-  //   }
-  // }
 
   validateForm(input: string) {
     return (

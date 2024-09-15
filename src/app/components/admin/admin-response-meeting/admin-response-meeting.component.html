@@ -1,1 +1,110 @@
-<p>admin-response-meeting works!</p>
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Admin Response to Meeting Requests</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/admin">Home</a></li>
+          <li class="breadcrumb-item active">Response to Meeting Requests</li>
+        </ol>
+      </nav>
+    </div>
+  
+    <div class="container-fluid">
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="loading-container d-flex flex-column align-items-center justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+  
+      <!-- Meeting Requests Table -->
+      <table class="table table-striped" *ngIf="!showResponseForm">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Request Message</th>
+            <th scope="col">Request Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let request of meetingRequests; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ request.email }}</td>
+            <td>{{ request.requestMessage }}</td>
+            <td>{{ request.requestStatus }}</td>
+            <td>
+              <button 
+                type="button" 
+                class="btn btn-primary"
+                (click)="openResponseForm(request)">
+                Respond
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Response Form -->
+      <div *ngIf="showResponseForm" class="bg-white p-4 p-md-5 rounded shadow-sm">
+        <h4 class="text-center text-black">Respond to Request</h4>
+        <form [formGroup]="responseForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              [readonly]="true"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="requestMessage" class="form-label">Request Message</label>
+            <textarea
+              class="form-control"
+              id="requestMessage"
+              formControlName="requestMessage"
+              [readonly]="true"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="meetingLink" class="form-label">Meeting Link <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="meetingLink"
+              formControlName="meetingLink"
+              [class.is-invalid]="validateForm('meetingLink')"
+            />
+            <span class="invalid-feedback" *ngIf="validateForm('meetingLink')">Meeting link is required</span>
+          </div>
+          <div class="mb-3">
+            <label for="time" class="form-label">Time <span class="text-danger">*</span></label>
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="time"
+              formControlName="time"
+              [class.is-invalid]="validateForm('time')"
+            />
+            <span class="invalid-feedback" *ngIf="validateForm('time')">Time is required</span>
+          </div>
+          <div class="text-center">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="!isFormValid()"
+            >
+              Submit Response
+            </button>
+          </div>
+          <div *ngIf="errorMessage" class="mt-3">
+            <p class="text-danger">{{ errorMessage }}</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  

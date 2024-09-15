@@ -35,6 +35,7 @@ import { StudentExploreCoursesComponent } from './components/student/student-exp
 import { StudentCourseDetailsComponent } from './components/student/student-course-details/student-course-details.component';
 import { AdminResponseMeetingComponent } from './components/admin/admin-response-meeting/admin-response-meeting.component';
 import { StudentRequestMeetingComponent } from './components/student/student-request-meeting/student-request-meeting.component';
+import { FactComponent } from './components/student/fact/fact.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { StudentRequestMeetingComponent } from './components/student/student-req
     StudentExploreCoursesComponent,
     StudentCourseDetailsComponent,
     AdminResponseMeetingComponent,
-    StudentRequestMeetingComponent
+    StudentRequestMeetingComponent,
+    FactComponent
   ],
   imports: [
     BrowserModule,

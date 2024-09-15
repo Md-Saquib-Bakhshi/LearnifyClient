@@ -5,12 +5,13 @@
 }
 
 .customImg{
-    height: 25vh;
+    height: 20vh;
 }
 
 .customName{
     padding: 0.5rem;
-    width: 10rem;
+    font-size: larger;
+    width: 15rem;
 }
 
 .customDescription{

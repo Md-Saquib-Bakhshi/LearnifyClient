@@ -23,17 +23,6 @@
       <div *ngIf="showRequestForm" class="bg-white p-4 p-md-5 rounded shadow-sm">
         <h4 class="text-center text-black">Request Meeting</h4>
         <form [formGroup]="meetingRequestForm" (ngSubmit)="onSubmit()">
-            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              formControlName="email"
-              [class.is-invalid]="validateForm('email')"
-              placeholder="name@example.com"
-            />
-            <span class="invalid-feedback" *ngIf="validateForm('email')">Email is required</span>
-          </div> -->
           <div class="mb-3">
             <label for="requestMessage" class="form-label">Request Message <span class="text-danger">*</span></label>
             <textarea

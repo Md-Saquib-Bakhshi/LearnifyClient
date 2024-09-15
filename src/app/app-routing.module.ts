@@ -24,6 +24,7 @@ import { StudentExploreCoursesComponent } from './components/student/student-exp
 import { StudentCourseDetailsComponent } from './components/student/student-course-details/student-course-details.component';
 import { AdminResponseMeetingComponent } from './components/admin/admin-response-meeting/admin-response-meeting.component';
 import { StudentRequestMeetingComponent } from './components/student/student-request-meeting/student-request-meeting.component';
+import { FactComponent } from './components/student/fact/fact.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -55,7 +56,8 @@ const routes: Routes = [
       {path:"leaderboard", component:LeaderboardComponent},
       {path:"explore-courses", component:StudentExploreCoursesComponent},
       {path: 'course-details/:id', component: StudentCourseDetailsComponent },
-      {path:"request-meeting", component:StudentRequestMeetingComponent}
+      {path:"request-meeting", component:StudentRequestMeetingComponent},
+      {path:"f.a.q", component:FactComponent}
     ]
   },
   {path:"**", component:ForbiddenComponent}

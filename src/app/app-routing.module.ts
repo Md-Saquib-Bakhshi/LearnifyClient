@@ -21,6 +21,7 @@ import { StudentDashboardComponent } from './components/student/student-dashboar
 import { AdminAddPlaylistComponent } from './components/admin/admin-add-playlist/admin-add-playlist.component';
 import { AdminViewPlaylistComponent } from './components/admin/admin-view-playlist/admin-view-playlist.component';
 import { StudentExploreCoursesComponent } from './components/student/student-explore-courses/student-explore-courses.component';
+import { StudentCourseDetailsComponent } from './components/student/student-course-details/student-course-details.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -49,7 +50,8 @@ const routes: Routes = [
       {path:"dashboard", component:StudentDashboardComponent},
       {path:"profile", component:ProfileComponent},
       {path:"leaderboard", component:LeaderboardComponent},
-      {path:"explore-courses", component:StudentExploreCoursesComponent}
+      {path:"explore-courses", component:StudentExploreCoursesComponent},
+      {path: 'course-details/:id', component: StudentCourseDetailsComponent },
     ]
   },
   {path:"**", component:ForbiddenComponent}

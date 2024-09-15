@@ -51,4 +51,16 @@ export class CourseService {
       })
     );
   }
+
+  getCoursesByPlaylistId(id: number): Observable<courseModel[]> {
+    return this.http.get<{ data: courseModel[], status: string, message: string }>(`${this.baseUrl}/playlist/${id}`).pipe(
+      map(response => {
+        if (response.status === 'Success') {
+          return response.data;
+        } else {
+          throw new Error(response.message);
+        }
+      })
+    );
+  }
 }

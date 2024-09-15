@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CourseService } from '../../../services/course/course.service';
 import { PlaylistService } from '../../../services/playlist/playlist.service';
 import { courseModel } from '../../../models/courseModel';
@@ -12,15 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class StudentExploreCoursesComponent implements OnInit {
   playlists: playlistModel[] = [];
-  courses: courseModel[] = [];
-  selectedPlaylistId: number | null = null;
   loading: boolean = false;
-  loadingTemporary: boolean = false;
 
   constructor(
     private courseService: CourseService,
     private playlistService: PlaylistService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,33 +41,15 @@ export class StudentExploreCoursesComponent implements OnInit {
     });
   }
 
-  // loadCoursesForPlaylist(playlistId: number): void {
-  //   this.selectedPlaylistId = playlistId;
-  //   this.startLoading();
-  //   this.courseService.getCoursesByPlaylist(playlistId).subscribe({
-  //     next: (courses) => {
-  //       this.courses = courses;
-  //       this.stopLoading();
-  //     },
-  //     error: (error) => {
-  //       this.stopLoading();
-  //       console.error('Error fetching courses:', error);
-  //       this.toastr.error('Failed to fetch courses', 'Error');
-  //     }
-  //   });
-  // }
+  viewCourseDetails(playlistId: number): void {
+    this.router.navigate(['/student/course-details', playlistId]);
+  }
 
   startLoading(): void {
     this.loading = true;
-    this.loadingTemporary = true;
-    setTimeout(() => {
-      this.loadingTemporary = false;
-    }, 1000); // Ensure spinner is visible for at least 1 second
   }
 
   stopLoading(): void {
-    setTimeout(() => {
-      this.loading = false;
-    }, this.loadingTemporary ? 1000 : 0); // Delay hiding spinner if loadingTemporary is true
+    this.loading = false;
   }
 }

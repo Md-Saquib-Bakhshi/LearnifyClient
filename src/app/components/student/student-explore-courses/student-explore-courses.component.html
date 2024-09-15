@@ -29,7 +29,7 @@
                 </div>
                 <h5 class="card-title text-center customDescription">{{ playlist.description }}</h5>
                 <div class="text-center">
-                  <button class="btn btn-warning">View Courses</button>
+                  <button class="btn btn-warning" (click)="viewCourseDetails(playlist.id!)">View Courses</button>
                 </div>
               </div>
             </div>
@@ -39,20 +39,14 @@
       
   
       <!-- Courses for selected playlist -->
-      <!-- <div *ngIf="selectedPlaylistId && courses.length > 0">
-        <h2>Courses in Selected Playlist</h2>
-        <div class="row">
-          <div class="col-md-4 mb-4" *ngFor="let course of courses">
-            <div class="card">
-              <img [src]="course.image" class="card-img-top" alt="{{ course.title }}">
-              <div class="card-body">
-                <h5 class="card-title">{{ course.title }}</h5>
-                <p class="card-text">{{ course.description }}</p>
-                <a [href]="course.link" class="btn btn-primary" target="_blank">View Course</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- <div *ngIf="selectedPlaylistId !== null">
+        <h2>Courses for Playlist ID: {{ selectedPlaylistId }}</h2>
+        <ul>
+          <li *ngFor="let course of courses">
+            <h3>{{ course.title }}</h3>
+            <a [href]="course.link" target="_blank">Watch Course</a>
+          </li>
+        </ul>
       </div> -->
     </div>
   </main>

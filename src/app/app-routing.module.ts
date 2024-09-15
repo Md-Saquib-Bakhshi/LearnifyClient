@@ -22,6 +22,8 @@ import { AdminAddPlaylistComponent } from './components/admin/admin-add-playlist
 import { AdminViewPlaylistComponent } from './components/admin/admin-view-playlist/admin-view-playlist.component';
 import { StudentExploreCoursesComponent } from './components/student/student-explore-courses/student-explore-courses.component';
 import { StudentCourseDetailsComponent } from './components/student/student-course-details/student-course-details.component';
+import { AdminResponseMeetingComponent } from './components/admin/admin-response-meeting/admin-response-meeting.component';
+import { StudentRequestMeetingComponent } from './components/student/student-request-meeting/student-request-meeting.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -41,7 +43,8 @@ const routes: Routes = [
       {path:"view-admin", component:AdminViewAdminComponent},
       {path:"requested-meeting", component:AdminRequestedMeetingComponent},
       {path:"profile", component:ProfileComponent},
-      {path:"leaderboard", component:LeaderboardComponent}
+      {path:"leaderboard", component:LeaderboardComponent},
+      {path:"response-meeting", component:AdminResponseMeetingComponent}
     ]
   },
   {path:"student", component:StudentComponent, canActivate: [StudentGuard],
@@ -52,6 +55,7 @@ const routes: Routes = [
       {path:"leaderboard", component:LeaderboardComponent},
       {path:"explore-courses", component:StudentExploreCoursesComponent},
       {path: 'course-details/:id', component: StudentCourseDetailsComponent },
+      {path:"request-meeting", component:StudentRequestMeetingComponent}
     ]
   },
   {path:"**", component:ForbiddenComponent}

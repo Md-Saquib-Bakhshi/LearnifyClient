@@ -33,6 +33,8 @@ import { AdminAddPlaylistComponent } from './components/admin/admin-add-playlist
 import { AdminViewPlaylistComponent } from './components/admin/admin-view-playlist/admin-view-playlist.component';
 import { StudentExploreCoursesComponent } from './components/student/student-explore-courses/student-explore-courses.component';
 import { StudentCourseDetailsComponent } from './components/student/student-course-details/student-course-details.component';
+import { AdminResponseMeetingComponent } from './components/admin/admin-response-meeting/admin-response-meeting.component';
+import { StudentRequestMeetingComponent } from './components/student/student-request-meeting/student-request-meeting.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { StudentCourseDetailsComponent } from './components/student/student-cour
     AdminAddPlaylistComponent,
     AdminViewPlaylistComponent,
     StudentExploreCoursesComponent,
-    StudentCourseDetailsComponent
+    StudentCourseDetailsComponent,
+    AdminResponseMeetingComponent,
+    StudentRequestMeetingComponent
   ],
   imports: [
     BrowserModule,

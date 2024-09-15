@@ -1,0 +1,113 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Student</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/admin">Home</a></li>
+          <li class="breadcrumb-item active">Request Meeting</li>
+        </ol>
+      </nav>
+    </div>
+  
+    <div class="container-fluid">
+      <!-- Toggle Button -->
+      <div class="mb-3">
+        <button 
+          class="btn btn-primary" 
+          (click)="showRequestForm = !showRequestForm">
+          {{ showRequestForm ? 'View Requests' : 'Request Meeting' }}
+        </button>
+      </div>
+  
+      <!-- Meeting Request Form -->
+      <div *ngIf="showRequestForm" class="bg-white p-4 p-md-5 rounded shadow-sm">
+        <h4 class="text-center text-black">Request Meeting</h4>
+        <form [formGroup]="meetingRequestForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              [class.is-invalid]="validateForm('email')"
+              placeholder="name@example.com"
+            />
+            <span class="invalid-feedback" *ngIf="validateForm('email')">Email is required</span>
+          </div>
+          <div class="mb-3">
+            <label for="requestMessage" class="form-label">Request Message <span class="text-danger">*</span></label>
+            <textarea
+              class="form-control"
+              id="requestMessage"
+              formControlName="requestMessage"
+              [class.is-invalid]="validateForm('requestMessage')"
+              placeholder="Your request message"
+            ></textarea>
+            <span class="invalid-feedback" *ngIf="validateForm('requestMessage')">Request message is required</span>
+          </div>
+          <div class="text-center">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="!isFormValid()"
+            >
+              Submit Request
+            </button>
+          </div>
+          <div *ngIf="errorMessage" class="mt-3">
+            <p class="text-danger">{{ errorMessage }}</p>
+          </div>
+          <div *ngIf="meetingRequest" class="mt-3">
+            <h5>Your Meeting Request</h5>
+            <p><strong>Status:</strong> {{ meetingRequest.requestStatus }}</p>
+            <p><strong>Message:</strong> {{ meetingRequest.requestMessage }}</p>
+            <p *ngIf="meetingRequest.meetingLink">
+              <strong>Meeting Link:</strong> <a [href]="meetingRequest.meetingLink" target="_blank">{{ meetingRequest.meetingLink }}</a>
+            </p>
+            <p *ngIf="meetingRequest.time">
+              <strong>Time:</strong> {{ meetingRequest.time }}
+            </p>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Meeting Requests Table -->
+      <table class="table table-striped" *ngIf="!showRequestForm">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Request Message</th>
+            <th scope="col">Request Status</th>
+            <th scope="col">Meeting Link</th>
+            <th scope="col">Time</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let request of meetingRequests; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ request.email }}</td>
+            <td>{{ request.requestMessage }}</td>
+            <td>{{ request.requestStatus }}</td>
+            <td *ngIf="request.meetingLink">
+              <a [href]="request.meetingLink" target="_blank">{{ request.meetingLink }}</a>
+            </td>
+            <td>{{ request.time }}</td>
+            <td>
+              <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-warning me-2" (click)="selectRequestForUpdate(request)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-danger" >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  

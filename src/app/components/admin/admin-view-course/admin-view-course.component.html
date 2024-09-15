@@ -1,1 +1,77 @@
-<p>admin-view-course works!</p>
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>View Courses</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/admin">Home</a></li>
+          <li class="breadcrumb-item active">View Courses</li>
+        </ol>
+      </nav>
+    </div>
+  
+    <div class="container-fluid">
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="loading-container d-flex flex-column align-items-center justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </div>
+  
+      <!-- Courses Table -->
+      <table class="table table-striped" *ngIf="!loading && !selectedCourse">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Link</th>
+            <th scope="col">Playlist</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let course of allCourses; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ course.title }}</td>
+            <td><a [href]="course.link" target="_blank">{{ course.link }}</a></td>
+            <td>{{ getPlaylistNameById(course.playlistId) }}</td>
+            <td>
+              <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-warning me-2" (click)="selectCourseForUpdate(course)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteCourse(course.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Update Course Form -->
+      <div *ngIf="selectedCourse" class="update-form mt-3">
+        <h4 class="text-center text-black">Update Course: {{ selectedCourse.title }}</h4>
+        <form (ngSubmit)="updateCourse()">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" [(ngModel)]="updateData.title" name="title" id="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="link" class="form-label">Link</label>
+            <input type="text" class="form-control" [(ngModel)]="updateData.link" name="link" id="link" required>
+          </div>
+          <div class="mb-3">
+            <label for="playlistId" class="form-label">Playlist</label>
+            <select class="form-control" [(ngModel)]="updateData.playlistId" name="playlistId" id="playlistId" required>
+              <option value="" disabled selected>Select Playlist</option>
+              <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.name }}</option>
+            </select>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-warning">Update Course</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  

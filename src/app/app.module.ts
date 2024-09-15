@@ -29,6 +29,9 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StudentSidebarComponent } from './components/student/student-sidebar/student-sidebar.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
+import { AdminAddPlaylistComponent } from './components/admin/admin-add-playlist/admin-add-playlist.component';
+import { AdminViewPlaylistComponent } from './components/admin/admin-view-playlist/admin-view-playlist.component';
+import { StudentExploreCoursesComponent } from './components/student/student-explore-courses/student-explore-courses.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { StudentDashboardComponent } from './components/student/student-dashboar
     ConfirmDialogComponent,
     LeaderboardComponent,
     StudentSidebarComponent,
-    StudentDashboardComponent
+    StudentDashboardComponent,
+    AdminAddPlaylistComponent,
+    AdminViewPlaylistComponent,
+    StudentExploreCoursesComponent
   ],
   imports: [
     BrowserModule,

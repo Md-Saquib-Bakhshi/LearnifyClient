@@ -1,0 +1,50 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Playlist</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Add Playlist</li>
+        </ol>
+      </nav>
+    </div>
+  
+    <div class="bg-light py-1 py-md-2">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-md-11 col-lg-10 col-xl-9 col-xxl-8">
+            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <h2 class="h3">Add Playlist Form</h2>
+                  </div>
+                </div>
+              </div>
+              <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+                <div class="row gy-3 gy-md-4 overflow-hidden">
+                    <div class="col-12">
+                        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="title" formControlName="name" placeholder="Title" />
+                        <span class="invalid-feedback">Title is required</span>
+                    </div>
+                    <div class="col-12">
+                        <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="description" formControlName="description" placeholder="Description" />
+                        <span class="invalid-feedback">Description is required</span>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-grid">
+                            <button class="btn btn-lg btn-primary" type="submit" [disabled]="!isFormValid()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

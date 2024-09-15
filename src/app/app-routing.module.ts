@@ -18,6 +18,8 @@ import { AdminRequestedMeetingComponent } from './components/admin/admin-request
 import { ProfileComponent } from './components/profile/profile.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
+import { AdminAddPlaylistComponent } from './components/admin/admin-add-playlist/admin-add-playlist.component';
+import { AdminViewPlaylistComponent } from './components/admin/admin-view-playlist/admin-view-playlist.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -29,6 +31,8 @@ const routes: Routes = [
       {path:"dashboard", component:AdminDashboardComponent},
       {path:"add-course", component:AdminAddCourseComponent},
       {path:"view-course", component:AdminViewCourseComponent},
+      {path:"add-playlist", component:AdminAddPlaylistComponent},
+      {path:"view-playlist", component:AdminViewPlaylistComponent},
       {path:"add-student", component:AdminAddStudentComponent},
       {path:"view-student", component:AdminViewStudentComponent},
       {path:"add-admin", component:AdminAddAdminComponent},

@@ -15,7 +15,7 @@ export class AdminAddStudentComponent {
   constructor(
     private fb: FormBuilder,
     private createStudentService: StudentService,
-    private toastr: ToastrService // Inject ToastrService
+    private toastr: ToastrService 
   ) {}
 
   ngOnInit(): void {
@@ -57,11 +57,11 @@ export class AdminAddStudentComponent {
       this.createStudentService.createStudent(user).subscribe({
         next: (response: any) => {
           this.studentRegistrationForm.reset();
-          this.toastr.success(response.message, 'Success'); // Using ToastrService
+          this.toastr.success(response.message, 'Success'); 
         },
         error: (error) => {
           const errorMessage = error?.error?.message || 'Registration failed. Please try again.';
-          this.toastr.error(errorMessage, 'Error'); // Using ToastrService
+          this.toastr.error(errorMessage, 'Error'); 
         }
       });
     }

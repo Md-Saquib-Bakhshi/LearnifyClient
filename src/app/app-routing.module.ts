@@ -20,6 +20,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { AdminAddPlaylistComponent } from './components/admin/admin-add-playlist/admin-add-playlist.component';
 import { AdminViewPlaylistComponent } from './components/admin/admin-view-playlist/admin-view-playlist.component';
+import { StudentExploreCoursesComponent } from './components/student/student-explore-courses/student-explore-courses.component';
 
 const routes: Routes = [
   {path:"", redirectTo:"/login", pathMatch:"full"},
@@ -47,7 +48,8 @@ const routes: Routes = [
       {path:"", redirectTo:"/student/dashboard", pathMatch:"full"},
       {path:"dashboard", component:StudentDashboardComponent},
       {path:"profile", component:ProfileComponent},
-      {path:"leaderboard", component:LeaderboardComponent}
+      {path:"leaderboard", component:LeaderboardComponent},
+      {path:"explore-courses", component:StudentExploreCoursesComponent}
     ]
   },
   {path:"**", component:ForbiddenComponent}
